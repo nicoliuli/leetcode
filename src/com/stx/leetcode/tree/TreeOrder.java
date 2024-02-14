@@ -1,6 +1,7 @@
 package com.stx.leetcode.tree;
 
 import com.stx.leetcode.common.TreeNode;
+import com.stx.leetcode.common.TreeUtil;
 
 import java.util.*;
 
@@ -16,10 +17,33 @@ public class TreeOrder {
 
         TreeNode root = new TreeNode(0,node1,node2);
 
-        postOrder1(root);
+        preOrder(root);
+        invertTree(root);
+        TreeUtil.printTree(root);
 
     }
 
+    /**
+     * leetocode226 翻转二叉树
+     * @param root
+     */
+    public static TreeNode invertTree(TreeNode root) {
+        if(root == null) {
+            return null;
+        }
+        invertTree(root.left);
+        invertTree(root.right);
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+        return root;
+    }
+
+    /**
+     * 最大深度
+     * @param root
+     * @return
+     */
     public static int maxDepth(TreeNode root) {
         if(root == null) {
             return 0;
