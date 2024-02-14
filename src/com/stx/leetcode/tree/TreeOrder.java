@@ -10,17 +10,39 @@ public class TreeOrder {
     public static void main(String[] args) {
         TreeNode node3 = new TreeNode(3,null,null);
         TreeNode node4 = new TreeNode(4,null,null);
-        TreeNode node5 = new TreeNode(5,null,null);
-        TreeNode node6 = new TreeNode(6,null,null);
+        TreeNode node5 = new TreeNode(4,null,null);
+        TreeNode node6 = new TreeNode(3,null,null);
         TreeNode node1 = new TreeNode(1,node3,node4);
-        TreeNode node2 = new TreeNode(2,node5,node6);
+        TreeNode node2 = new TreeNode(1,node5,node6);
 
         TreeNode root = new TreeNode(0,node1,node2);
 
-        preOrder(root);
-        invertTree(root);
-        TreeUtil.printTree(root);
+        System.out.println(isSymmetric(root));
 
+    }
+
+    /**
+     * leetocode101 对称二叉树
+     * @param root
+     */
+    public static boolean isSymmetric(TreeNode root) {
+        if(root == null) {
+            return true;
+        }
+        return deepCheck(root.left,root.right);
+    }
+
+    public static boolean deepCheck(TreeNode left,TreeNode right) {
+        if(left == null && right == null) {
+            return true;
+        }
+        if(left == null || right == null) {
+            return false;
+        }
+        if(left.data != right.data) {
+            return false;
+        }
+        return deepCheck(left.left,right.right) && deepCheck(left.right,right.left);
     }
 
     /**
