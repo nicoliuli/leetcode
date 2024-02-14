@@ -2,9 +2,31 @@ package com.stx.leetcode.array;
 
 public class ArrayDemo {
     public static void main(String[] args) {
-        int a[] = {5,7,7,8,8,10};
-        int[] ints = searchRange(a, 8);
-        System.out.println(ints[0] + ":" + ints[1]);
+        int a[] = {0,1,0,3,12};
+        moveZeroes(a);
+    }
+
+    /**
+     * leetcode283 移动零
+     * @param nums
+     */
+    public static void moveZeroes(int[] nums) {
+        if(nums == null) {
+            return;
+        }
+        int j = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i] != 0) {
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+        for (int i = j; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+        for (int num : nums) {
+            System.out.println(num);
+        }
     }
 
     public int removeElement(int[] nums, int val) {
